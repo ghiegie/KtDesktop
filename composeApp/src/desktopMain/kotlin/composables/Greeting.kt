@@ -5,7 +5,6 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.ColumnScopeInstance.weight
 import androidx.compose.foundation.layout.FlowColumnScopeInstance.weight
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import classes.GreetingFormatModel
 import classes.GreetingModel
+import java.util.Objects
 
 @Composable
 fun Greeting(greetingModel: GreetingModel) {
@@ -72,13 +72,18 @@ fun GreetingFormat(greetingFormatModel: GreetingFormatModel) {
         )
     }
 
-    val greetingFormatColumnModifier: ColumnScope = Modifier.padding(
-        start = 5.dp,
-        top = 5.dp,
-        end = 5.dp,
-        bottom = greetingFormatModel.extraPadding
-            .coerceAtLeast(0.dp))
-        .weight()
+    //fun ColumnScope.something() = {num: Float -> Modifier.weight(num)}
+
+    val myFunc = {num: Float -> Modifier.weight(num)}
+
+    val something =  object: ColumnScope {
+
+    }
+    val test = myFunc(ColumnScope(), 1f)
+
+    val test = weight(1f).padding(start = 5.dp, top = 5.dp, end = 5.dp, bottom = greetingFormatModel.extraPadding.coerceAtLeast(0.dp))
+
+    val greetingFormatColumnModifier: Modifier = weight(1f)
 
     Row {
         Column(
@@ -94,3 +99,5 @@ fun GreetingFormat(greetingFormatModel: GreetingFormatModel) {
         )}
     }
 }
+
+
