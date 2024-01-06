@@ -17,8 +17,6 @@ import classes.OnboardingScreenModel
 
 @Composable
 fun OnboardingScreen(onboardingScreenModel: OnboardingScreenModel) {
-    var shouldShowOnboarding by rememberSaveable { mutableStateOf(true) }
-
     Column(modifier = onboardingScreenModel.modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
         Text("Welcome to the Basics Codelab!")
         Button(onClick = onboardingScreenModel.onContinueClicked) {Text("Continue")}
